@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SeniorPhone</string>
+    <string name="Label_AllApps">ALL APPS</string>
 </resources>
