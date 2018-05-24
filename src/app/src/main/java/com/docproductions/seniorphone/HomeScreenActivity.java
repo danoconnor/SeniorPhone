@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.docproductions.seniorphone.Adapters.MainAppAdapter;
+import com.docproductions.seniorphone.Utililties.ServiceLocator.ServiceLocatorConfiguration;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        // Register our services so we can access them through the ServiceLocatorFactory
+        ServiceLocatorConfiguration.initializeDefaultConfiguration();
 
         GridView mainAppsView = findViewById(R.id.mainAppsView);
         mainAppsView.setAdapter(new MainAppAdapter(this));
