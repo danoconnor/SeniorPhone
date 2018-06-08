@@ -1,26 +1,43 @@
 package com.docproductions.seniorphone.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.docproductions.seniorphone.Models.AppInfo;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainAppAdapter extends BaseAdapter {
-    public MainAppAdapter(Context c) {
+public class BaseAppsAdapter extends BaseAdapter {
+    public BaseAppsAdapter(Context c) {
         _context = c;
+        _apps = new ArrayList<>();
 
-        _packageManager = _context.getPackageManager();
-        _allApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+        PackageManager _packageManager = _context.getPackageManager();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        for (ResolveInfo info : _packageManager.queryIntentActivities(intent, 0)) {
+            AppInfo appInfo = new AppInfo();
+            appInfo.name = info.loadLabel(_packageManager).toString();
+            appInfo.packageName = info.activityInfo.packageName;
+            appInfo.icon = info.activityInfo.loadIcon(_packageManager);
+
+            _apps.add(appInfo);
+        }
     }
 
     public int getCount() {
-        return 12;
+        return _apps.size();
     }
 
     public Object getItem(int position) {
@@ -48,13 +65,10 @@ public class MainAppAdapter extends BaseAdapter {
             buttonTile = (Button) convertView;
         }
 
-        buttonTile.setText(mainApps[position].name);
+        buttonTile.setText(_apps.get(position).name);
         return buttonTile;
     }
 
-    private List<ApplicationInfo> _homeScreenApps;
-    private List<ApplicationInfo> _allApps;
-    private PackageManager _packageManager;
-
-    private Context _context;
+    protected List<AppInfo> _apps;
+    protected Context _context;
 }

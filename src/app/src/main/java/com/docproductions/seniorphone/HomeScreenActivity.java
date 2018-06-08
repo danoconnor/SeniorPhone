@@ -7,7 +7,8 @@ import android.widget.GridView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.docproductions.seniorphone.Adapters.MainAppAdapter;
+import com.docproductions.seniorphone.Adapters.BaseAppsAdapter;
+import com.docproductions.seniorphone.Adapters.HomeScreenAppsAdapter;
 import com.docproductions.seniorphone.Utililties.ServiceLocator.ServiceLocatorConfiguration;
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         ServiceLocatorConfiguration.initializeDefaultConfiguration();
 
         GridView mainAppsView = findViewById(R.id.mainAppsView);
-        mainAppsView.setAdapter(new MainAppAdapter(this));
+        mainAppsView.setAdapter(new HomeScreenAppsAdapter(this));
         mainAppsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Toast.makeText(HomeScreenActivity.this, "Hello world: " + position, Toast.LENGTH_SHORT).show();
