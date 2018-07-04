@@ -1,10 +1,19 @@
 package com.docproductions.seniorphone.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.docproductions.seniorphone.Managers.SettingsManager.SettingKey;
 import com.docproductions.seniorphone.Models.AppInfo;
 import com.docproductions.seniorphone.Models.HomeScreenApp;
+import com.docproductions.seniorphone.R;
 import com.docproductions.seniorphone.Utililties.ServiceLocator.ServiceLocatorFactory;
 
 import java.util.HashSet;
@@ -35,5 +44,23 @@ public class HomeScreenAppsAdapter extends BaseAppsAdapter {
                 i++;
             }
         }
+    }
+
+    // create a new ImageView for each item referenced by the Adapter
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View tile;
+        if (convertView == null) {
+            // if it's not recycled, initialize some attributes
+            tile = LayoutInflater.from(_context).inflate(R.layout.home_screen_apps_tile, null);
+        } else {
+            tile = convertView;
+        }
+
+        tile.setBackgroundColor(Color.BLUE);
+
+        TextView tileText = tile.findViewById(R.id.appLabel);
+        tileText.setText(_apps.get(position).name);
+
+        return tile;
     }
 }

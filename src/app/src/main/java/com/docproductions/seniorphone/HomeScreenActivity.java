@@ -7,7 +7,6 @@ import android.widget.GridView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.docproductions.seniorphone.Adapters.BaseAppsAdapter;
 import com.docproductions.seniorphone.Adapters.HomeScreenAppsAdapter;
 import com.docproductions.seniorphone.Utililties.ServiceLocator.ServiceLocatorConfiguration;
 

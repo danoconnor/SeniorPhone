@@ -16,7 +16,7 @@ import com.docproductions.seniorphone.Models.AppInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseAppsAdapter extends BaseAdapter {
+public abstract class BaseAppsAdapter extends BaseAdapter {
     public BaseAppsAdapter(Context c) {
         _context = c;
         _apps = new ArrayList<>();
@@ -46,27 +46,6 @@ public class BaseAppsAdapter extends BaseAdapter {
 
     public long getItemId(int position) {
         return 0;
-    }
-
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Button buttonTile;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            buttonTile = new Button(_context);
-            buttonTile.setLayoutParams(new ViewGroup.LayoutParams(800, 800));
-            buttonTile.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    Button b = (Button)view;
-                    Toast.makeText(_context, "Button clicked: " + b.getText(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            buttonTile = (Button) convertView;
-        }
-
-        buttonTile.setText(_apps.get(position).name);
-        return buttonTile;
     }
 
     protected List<AppInfo> _apps;
