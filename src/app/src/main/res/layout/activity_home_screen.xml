@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="com.docproductions.seniorphone.HomeScreenActivity">
+    tools:context="com.docproductions.seniorphone.Activities.HomeScreenActivity">
 
     <ImageButton
         android:id="@+id/imageButton"

@@ -19,7 +19,7 @@ public class SquareConstraintLayout extends ConstraintLayout {
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+        // Ensure that the view is at least as tall as it is wide
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec < widthMeasureSpec ? widthMeasureSpec : heightMeasureSpec);
     }
 }
