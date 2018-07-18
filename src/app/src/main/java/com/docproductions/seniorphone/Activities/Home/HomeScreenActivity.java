@@ -1,14 +1,18 @@
-package com.docproductions.seniorphone.Activities;
+package com.docproductions.seniorphone.Activities.Home;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.docproductions.seniorphone.Activities.Settings.SettingsHomeScreenActivity;
 import com.docproductions.seniorphone.Adapters.HomeScreenAppsAdapter;
 import com.docproductions.seniorphone.R;
 import com.docproductions.seniorphone.Utililties.ServiceLocator.ServiceLocatorConfiguration;
@@ -54,5 +58,15 @@ public class HomeScreenActivity extends AppCompatActivity {
                 });
             }
         }, 0, 1000);
+
+        final ImageButton settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingsActivity = new Intent();
+                settingsActivity.setClass(getApplicationContext(), SettingsHomeScreenActivity.class);
+                startActivity(settingsActivity);
+            }
+        });
     }
 }
